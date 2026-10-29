@@ -1,0 +1,128 @@
+// Thread 1: Displays "Good Morning" every 1 second
+class GoodMorningThread extends Thread {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Good Morning");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Good Morning thread interrupted.");
+                break;
+            }
+        }
+    }
+}
+
+// Thread 2: Displays "Hello" every 2 seconds
+class HelloThread extends Thread {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Hello");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                System.err.println("Hello thread interrupted.");
+                break;
+            }
+        }
+    }
+}
+
+// Thread 3: Displays "Welcome" every 3 seconds
+class WelcomeThread extends Thread {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Welcome");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                System.err.println("Welcome thread interrupted.");
+                break;
+            }
+        }
+    }
+}
+
+public class MultiThreadingDemo1 {
+    public static void main(String[] args) {
+        // Create thread objects
+        GoodMorningThread t1 = new GoodMorningThread();
+        HelloThread t2 = new HelloThread();
+        WelcomeThread t3 = new WelcomeThread();
+
+        // Start execution of all threads concurrently
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+// Task 1: Prints "Good Morning" every 1 second
+class GoodMorningRunnable implements Runnable {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Good Morning");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Good Morning task interrupted.");
+                break;
+            }
+        }
+    }
+}
+
+// Task 2: Prints "Hello" every 2 seconds
+class HelloRunnable implements Runnable {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Hello");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                System.err.println("Hello task interrupted.");
+                break;
+            }
+        }
+    }
+}
+
+// Task 3: Prints "Welcome" every 3 seconds
+class WelcomeRunnable implements Runnable {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Welcome");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                System.err.println("Welcome task interrupted.");
+                break;
+            }
+        }
+    }
+}
+
+public class MultiThreadingDemo2 {
+    public static void main(String[] args) {
+        // Create runnable task instances
+        GoodMorningRunnable target1 = new GoodMorningRunnable();
+        HelloRunnable target2 = new HelloRunnable();
+        WelcomeRunnable target3 = new WelcomeRunnable();
+
+        // Instantiate thread objects by passing the runnable targets
+        Thread t1 = new Thread(target1);
+        Thread t2 = new Thread(target2);
+        Thread t3 = new Thread(target3);
+
+        // Start execution of all threads concurrently
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
